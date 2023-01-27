@@ -1,0 +1,22 @@
+<div style="float: right;">
+    <p><%= link_to 'Criar nova publicação', new_admins_backoffice_publication_path, class: 'btn btn-primary' %></p>
+</div>
+<h1>Publicações</h1>
+<div class="row row-cols-1 row-cols-md-2" style="margin-top: 40px">
+    <% @publications.each do |publication| %>
+        <div class="col mb-4">
+            <div class="card">
+                <%= image_tag "#{publication.image}" %>
+                <div class="card-body">
+                    <h2 class="card-title"><%= publication.title.truncate(100) %></h2>
+                    <p><%= publication.description.truncate(150) %></p>
+                    <div>
+                        <%= link_to admins_backoffice_path(publication) do %>
+                            <span>Acessar</span>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

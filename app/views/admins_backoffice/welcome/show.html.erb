@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row row-cols-1">
+        <div class="col mb-4">
+            <div class="card">
+                <%= image_tag "#{@publication.image}" %>
+                <div class="card-body">
+                    <h2 class="card-title" style="text-align: center;"><%= @publication.title %></h2>
+                    <p><%= raw @publication.description %></p>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
