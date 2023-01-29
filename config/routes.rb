@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   namespace :site do
     get 'welcome/index'
   end
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     resources :admins #Admins
     resources :subjects #Assuntos
     resources :publications #Perguntas
+    resources :profiles
   end
   devise_for :users
   devise_for :admins

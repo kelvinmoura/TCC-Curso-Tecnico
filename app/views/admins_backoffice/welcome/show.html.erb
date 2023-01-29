@@ -1,12 +1,15 @@
+<%= link_to "Voltar", admins_backoffice_welcome_index_path, class: "btn btn-primary" %>
 <div class="container">
     <div class="row row-cols-1">
         <div class="col mb-4">
             <div class="card">
-                <%= image_tag "#{@publication.image}" %>
+                <%= image_tag "#{@publication.image}", style: "margin: auto;" %>
                 <div class="card-body">
                     <h2 class="card-title" style="text-align: center;"><%= @publication.title %></h2>
                     <p><%= raw @publication.description %></p>
                 </div>
+                <p><strong>Link da materia oficial:</strong> <%= link_to "#{@publication.reference_link}", @publication.reference_link %></p>
+                <%= @publication.created_at %>
             </div>  
         </div>
     </div>

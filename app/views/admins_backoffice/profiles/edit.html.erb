@@ -1,0 +1,26 @@
+<div class="container">
+    <!-- Contact Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Meus dados</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <%= form_with(model: [:admins_backoffice, @profile], local: true) do |form| %>
+                <% if @profile.errors.any? %>
+                    <ul>
+                        <% @profile.errors.full_messages.each do |message|%>
+                        <li style="color: red;"><%= message %></li>
+                        <% end %>
+                    </ul>
+                <% end %>
+                <div class="form-floating mb-3">
+                    <%= form.label :image, 'Imagem de perfil' %>
+                    <%= form.file_field :image %>
+                </div>
+                <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit"><%= t('messages.submit') %></button>
+            <% end %>
+        </div>
+    </div>
+</div>

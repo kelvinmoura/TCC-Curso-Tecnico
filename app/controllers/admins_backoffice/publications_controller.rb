@@ -3,11 +3,11 @@ class AdminsBackoffice::PublicationsController < AdminsBackofficeController
   before_action :set_subject, only: %i[new create edit update]
 
   def index
-    @publications = Publication.all
+    @publications = Publication.all.page(params[:page]).per(4)
   end
 
   def my_publics
-    @publications = Publication.where(admin_id: current_admin.id)
+    @publications = Publication.where(admin_id: current_admin.id).page(params[:page]).per(4)
   end
 
   def new

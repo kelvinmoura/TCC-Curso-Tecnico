@@ -1,22 +1,36 @@
 <div style="float: right;">
     <p><%= link_to 'Criar nova publicação', new_admins_backoffice_publication_path, class: 'btn btn-primary' %></p>
 </div>
-<h1>Publicações</h1>
-<div class="row row-cols-1 row-cols-md-2" style="margin-top: 40px">
-    <% @publications.each do |publication| %>
-        <div class="col mb-4">
-            <div class="card">
-                <%= image_tag "#{publication.image}" %>
-                <div class="card-body">
-                    <h2 class="card-title"><%= publication.title.truncate(100) %></h2>
-                    <p><%= publication.description.truncate(150) %></p>
-                    <div>
-                        <%= link_to admins_backoffice_path(publication) do %>
-                            <span>Acessar</span>
+<h1>Lista de publicações</h1>
+<div class="container">
+    <div class="row row-cols-md-1" style="margin-top: 40px">
+        <% @publications.each do |publication| %>
+            <div class="col mb-2">
+                <div class="card">
+                    <%= image_tag "#{publication.image}", class: "card-img-top", style: "margin: auto;" %>
+                    <div class="card-body">
+                        <h2 class="card-title"><%= publication.title %></h2>
+                        <%= raw publication.description.truncate(150) %>
+                        <div>
+                            <%= link_to admins_backoffice_publication_path(publication), class: "btn btn-primary" do %>
+                                <span>Acessar</span>
+                            <% end %>
+                        <% if publication.admin_id == current_admin.id %>
+                            <%= link_to edit_admins_backoffice_publication_path(publication), class: "btn btn-success" do %>
+                                <span>Editar</span>
+                            <% end %>
+                            <%= link_to admins_backoffice_publication_path(publication), method: :delete, class: "btn btn-danger", date: { confirm: "Deseja excluir a publicação #{publication.description}?"} do %>
+                                <span>Deletar</span>
+                            <% end %>
                         <% end %>
+                        <%= link_to "", class:"btn" do %>
+                            <i class="fa fa-tag"> <%= publication.subject.description %></i>
+                        <% end %> 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </div>
 </div>
+<%= paginate @publications %>

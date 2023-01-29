@@ -26,16 +26,12 @@
         email: Email
         first_name: Nome
         last_name: Sobrenome
-        password: Senha
-        password_confirmation: Confirmação da Senha
-        created_at: Criado em
-        updated_at: Atualizado em
-      user_profile:
-        id: Código
         address: Endereço
         zip_code: CEP
         gender: Sexo
         birthdate: Data de Nascimento
+        password: Senha
+        password_confirmation: Confirmação da Senha
         created_at: Criado em
         updated_at: Atualizado em
       subject:
@@ -43,10 +39,12 @@
         description: Descrição
         created_at: Criado em
         updated_at: Atualizado em
-      question:
+      publication:
         id: Código
         description: Descrição
+        admin_id: Administrador
+        reference_link: Link de referência
+        image: Imagem
         subject: Assunto
-        subject_id: Assunto
         created_at: Criado em
         updated_at: Atualizado em

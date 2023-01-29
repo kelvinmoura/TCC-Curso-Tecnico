@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
 
   #kaminari 
   paginates_per 9
-  #mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
   has_many :publications
   
 end

@@ -1,0 +1,43 @@
+
+<div class="container">
+    <!-- Contact Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Nova publicação</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <%= form_with(model: [:admins_backoffice, @publication], local: true) do |form| %>
+                <% if @publication.errors.any? %>
+                    <ul>
+                        <% @publication.errors.full_messages.each do |message|%>
+                        <li style="color: red;"><%= message %></li>
+                        <% end %>
+                    </ul>
+                <% end %>
+                <div class="form-floating mb-3">
+                    <%= form.label :title, 'Titulo da publicação' %>
+                    <%= form.text_field :title, class:"form-control" %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.label :image, 'Imagem da publicação' %>
+                    <%= form.file_field :image %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.label :subject_id, 'Assunto' %>
+                    <%= form.select("subject_id", @subject, { include_blank: 'Selecione...' }, class:"form-control") %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.text_area :description, class: "tinymce"  %>
+                    <%= form.label :description, 'Texto' %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.text_field :reference_link, class:"form-control" %>
+                    <%= form.label :reference_link, 'Link da publicação oficial' %>
+                </div>
+                <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit"><%= t('messages.submit') %></button>
+            <% end %>
+        </div>
+    </div>
+</div>
