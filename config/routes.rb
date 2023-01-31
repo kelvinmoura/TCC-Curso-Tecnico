@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-
   namespace :site do
     get 'welcome/index'
   end
   namespace :users_backoffice do
     get 'welcome/index'
+    resources :publications, only: %i[index show]
+    resources :profiles, only: %i[edit show update]
   end
   namespace :admins_backoffice do
     get 'my_publics', to: 'publications#my_publics'

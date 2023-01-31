@@ -1,26 +1,73 @@
-<div class="container">
-    <!-- Contact Section Heading-->
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Meus dados</h2>
-    <!-- Icon Divider-->
-    <div class="divider-custom">
-    </div>
-    <!-- Contact Section Form-->
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-xl-7">
-            <%= form_with(model: [:admins_backoffice, @profile], local: true) do |form| %>
-                <% if @profile.errors.any? %>
-                    <ul>
-                        <% @profile.errors.full_messages.each do |message|%>
-                        <li style="color: red;"><%= message %></li>
-                        <% end %>
-                    </ul>
-                <% end %>
-                <div class="form-floating mb-3">
-                    <%= form.label :image, 'Imagem de perfil' %>
-                    <%= form.file_field :image %>
+<style>
+.custom-file-label::after {
+  content: 'Escolha uma foto';
+}
+</style>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right" style="background-color: #43369d;">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><%= image_tag "#{current_admin.image}", class: "rounded-circle mt-5", style:"width: 150px;" %><span class="font-weight-bold" style="color: white;"><%= current_admin.full_name %></span><span class="font-weight-bold" style="color: white;"><%= current_admin.email %></span><span></span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Configurações de perfil</h4>
                 </div>
-                <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit"><%= t('messages.submit') %></button>
+                <%= form_with(model: @profile, url: admins_backoffice_profile_path, local: true) do |form| %>
+                    <% if @profile.errors.any? %>
+                        <ul>
+                            <% @profile.errors.full_messages.each do |message|%>
+                            <li style="color: red;"><%= message %></li>
+                            <% end %>
+                        </ul>
+                    <% end %>
+                    <div class="row mt-2">
+                     <div class="col-md-6">
+                        <%= form.label :full_name, 'Nome', class:"labels" %>
+                        <%= form.text_field :full_name, class:"form-control", placeholder:"Nome completo" %>
+                     </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-8" style="margin-left: 10px;">
+                            <label class="custom-file-label"><div id="file-name"></div></label>
+                            <%= form.file_field :image, class: "custom-file-input", id: "image-input" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.label :identification, 'CPF', class:"labels" %>
+                            <%= form.text_field :identification, class:"form-control" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.label :birth_date, 'Data de nascimento', class:"labels" %>
+                            <%= form.date_field :birth_date, class:"form-control" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.label :age, 'Idade', class:"labels" %>
+                            <%= form.text_field :age, class:"form-control" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.label :description, 'Descrição', class:"labels" %>
+                            <%= form.text_area :description, class:"form-control", length: {minimum:20, maximum:200}, placeholder:"Sobre você..." %>
+                        </div>
+                    </div><br/>
+                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit"><%= t('messages.submit') %></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                 <div class="col-md-12">
+                    <%= form.label :email, 'Email', class:"labels" %>
+                    <%= form.text_field :email, class:"form-control" %>
+                 </div>
+            </div>
             <% end %>
         </div>
     </div>
 </div>
+</div>
+</div>
+<script>
+  document.getElementById('image-input').addEventListener('change', function() {
+  var fileName = this.files[0].name;
+  document.getElementById('file-name').innerHTML = fileName;
+});
+</script>

@@ -1,0 +1,30 @@
+<section id="gallery">
+<div class="container">
+    <div class="row">
+        <% @publications.each do |publication| %>
+        <div class="card-deck">
+            <div class="card">
+                <%= image_tag "#{publication.image}", class: "card-img-top img-fluid" %>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-weight: bold;"><%= publication.title %></h5>
+                    <p class="card-text"><%= raw publication.description.truncate(300) %></p>
+                    <%= link_to "Acessar", users_backoffice_publication_path(publication), class: "btn btn-primary btn-sm" %>
+                    <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+</section>
+<style>
+.card-deck {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 0 calc(33.333333% - 20px);
+  margin: 10px;
+}
+</style>

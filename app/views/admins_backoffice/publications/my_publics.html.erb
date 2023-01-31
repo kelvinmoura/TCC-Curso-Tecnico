@@ -9,7 +9,7 @@
                 <div class="card">
                     <%= image_tag "#{publication.image}", class: "card-img-top", style: "margin: auto;" %>
                     <div class="card-body">
-                        <h2 class="card-title"><%= publication.title %></h2>
+                        <h2 class="card-title"><%= publication.title.truncate(20) %></h2>
                         <%= raw publication.description.truncate(140) %>
                         <div>
                             <%= link_to admins_backoffice_publication_path(publication), class: "btn btn-primary" do %>

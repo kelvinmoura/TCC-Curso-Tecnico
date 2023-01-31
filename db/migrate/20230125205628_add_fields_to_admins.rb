@@ -6,6 +6,6 @@ class AddFieldsToAdmins < ActiveRecord::Migration[5.2]
     add_column :admins, :age, :integer
     add_column :admins, :role, :integer
     add_column :admins, :description, :text
-    add_column :admins, :image, :string
+    add_column :admins, :image, :string, default: "img.jpg"
   end
 end

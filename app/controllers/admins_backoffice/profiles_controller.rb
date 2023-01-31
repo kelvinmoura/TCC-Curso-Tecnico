@@ -12,6 +12,9 @@ class AdminsBackoffice::ProfilesController < AdminsBackofficeController
     end
   
     def update
+      if @profile.password_confirmation.blank?
+        @profile.password_confirmation = @profile.password
+      end
       if @profile.update(params_profile)
         redirect_to admins_backoffice_publications_path, notice: 'Publicação atualizado com sucesso.'
       else
@@ -19,7 +22,6 @@ class AdminsBackoffice::ProfilesController < AdminsBackofficeController
       end
     end
     
-  
     private
   
     def params_profile
